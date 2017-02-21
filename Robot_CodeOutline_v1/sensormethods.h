@@ -1,0 +1,4 @@
+#ifndef SENSORMETHODS_H
+#define SENSORMETHODS_H
+
+#endif // SENSORMETHODS_H
