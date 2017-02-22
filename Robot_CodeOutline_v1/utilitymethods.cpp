@@ -34,8 +34,12 @@ void WaitToStart()
 
     while(!LCD.Touch(&x,&y))
     {
-        sleep(50);
+        Sleep(50);
     }
+
+    LCD.Clear(FEHLCD::Black);
+    LCD.WriteLine("Starting in 2 seconds...");
+    Sleep(2000);
 }
 
 /*

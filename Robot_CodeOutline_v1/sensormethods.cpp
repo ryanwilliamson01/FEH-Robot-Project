@@ -23,7 +23,7 @@
 #define BUMP_FRONT_RIGHT //INSERT BUMP PINS
 #define BUMP_BACK_LEFT //INSERT BUMP PINS
 #define BUMP_BACK_RIGHT //INSERT BUMP PINS
-#define CDS_CELL //FEHIO::P0_0 INSERT CDS CELLS PINS
+#define CDS_CELL FEHIO::P0_0//FEHIO::P0_0 INSERT CDS CELLS PINS
 #define ANALOG_OPTOSENSOR_LEFT //FEHIO::P0_0 INSERT ANALOG OPTOSENSOR PINS
 #define ANALOG_OPTOSENSOR_MIDDLE //INSERT ANALOG OPTOSENSOR PINS
 #define ANALOG_OPTOSENSOR_RIGHT //INSERT ANALOG OPTOSENSOR PINS
@@ -59,7 +59,7 @@ bool isPressed(DigitalInputPin bump)
  *
  * @return true if both front bump switches are pressed, false if one or both are not pressed
  */
-bool isFrontPressed()
+bool IsFrontPressed()
 {
     /*
      * INSERT CODE HERE
@@ -87,11 +87,41 @@ bool isBackPressed()
 /*
  * Sets the threshholds for various colors of light
  */
-void setCdSThreshold()
+double setCdSThreshold()
 {
-    /*
-     * INSERT CODE HERE
-     */
+    float x,y;
+
+    LCD.Clear( FEHLCD::Black );
+    LCD.SetFontColor( FEHLCD::White );
+    LCD.WriteLine("Press the Screen to Begin Recording Threshold Values");
+
+    while(!LCD.Touch(&x,&y))
+    {
+        Sleep(10);
+    }
+
+    double max = 0, min = 3.3, average = 0;
+
+    for(int i = 0; i < 100; i++)
+    {
+        double reading = CdSCell.Value();
+        average += reading;
+
+        if(reading > max)
+        {
+            max = reading;
+        }
+        else if(reading < min)
+        {
+            min = reading;
+        }
+
+        Sleep(50);
+    }
+
+    average = average / 100.0;
+
+    return average;
 }
 
 

@@ -28,4 +28,6 @@ void DriveBackward(int percent, double inch);
 void DriveForwardUntilPressed(int percent);
 void DriveBackwardUntilPressed(int percent);
 
+void TokyoDrift(int percent);
+
 #endif // MOTORMETHODS_H

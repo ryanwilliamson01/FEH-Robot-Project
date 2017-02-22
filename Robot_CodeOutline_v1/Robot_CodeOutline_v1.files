@@ -1,3 +1,7 @@
+utilitymethods.cpp
+utilitymethods.h
+sensormethods.cpp
+sensormethods.h
 motormethods.cpp
 motormethods.h
 main.cpp

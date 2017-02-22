@@ -21,7 +21,7 @@
 
 //Bump Switches
 bool isPressed(DigitalInputPin bump);
-bool isFrontPressed();
+bool IsFrontPressed();
 bool isBackPressed();
 
 //CdS Cell

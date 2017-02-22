@@ -16,9 +16,11 @@
 #include <FEHMotor.h>
 #include <FEHServo.h>
 
+
 #include "motormethods.h"
 #include "sensormethods.h"
-#include "utilitymethods.h"
+//#include "utilitymethods.h"
+
 
 //Defining Tasks
 #define TASK_DRIVE_FORWARD 0
@@ -43,7 +45,21 @@ double lineThresholdOrangeRight;
 
 int main(void)
 {
-    WaitToStart();
+    lightThresholdNone = setCdSThreshold();
+    lightThresholdRed = setCdSThreshold();
+
+    LCD.Clear(FEHIO::Black);
+    LCD.SetFontColor(FEHIO::White);
+    LCD.WriteLine("No light threshold average: " + lightThresholdeNone);
+    LCD.WriteLine("Red light threshold average: " + lightThresholdeRed);
+
+    Sleep(5000);
+
+    DriveForward(20);
+
+    Sleep(5000);
+
+    //TokyoDrift(20);
 
     return 0;
 }

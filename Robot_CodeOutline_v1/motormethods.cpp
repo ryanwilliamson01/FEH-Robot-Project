@@ -21,16 +21,16 @@
 //Defining Pins
 #define SHAFT_ENCODER_LEFT //FEHIO::P0_0 INSERT SHAFT ENCODER PINS
 #define SHAFT_ENCODER_RIGHT //INSERT SHAFT ENCODER PINS
-#define DRIVE_MOTOR_LEFT //FEHMotor::Motor0 INSERT MOTOR PINS
-#define DRIVE_MOTOR_RIGHT //INSERT MOTOR PINS
+#define DRIVE_MOTOR_LEFT FEHMotor::Motor0
+#define DRIVE_MOTOR_RIGHT FEHMotor::Motor1
 #define SERVO_MOTOR //FEHServo::Servo0 INSERT SERVO PINS
 
 //Declaring Shaft Encoders
 DigitalEncoder shaftEncoderLeft(SHAFT_ENCODER_LEFT);
 DigitalEncoder shaftEncoderRight(SHAFT_ENCODER_RIGHT);
 //Declaring Drive Motors
-FEHMotor driveMotorLeft(DRIVE_MOTOR_LEFT,12.0);
-FEHMotor driveMotorRight(DRIVE_MOTOR_RIGHT,12.0);
+FEHMotor driveMotorLeft(DRIVE_MOTOR_LEFT, 12.0);
+FEHMotor driveMotorRight(DRIVE_MOTOR_RIGHT, 12.0);
 //Declaring Servo Motors
 FEHServo servoMotor(SERVO_MOTOR);
 
@@ -39,9 +39,12 @@ FEHServo servoMotor(SERVO_MOTOR);
  */
 void DriveForward(int percent)
 {
-    /*
-     *  INSERT CODE HERE
-     */
+    driveMotorLeft.SetPercent(percent);
+    driveMotorRight.SetPercent(percent);
+
+    Sleep(5000);
+    driveMotorLeft.Stop();
+    driveMotorRight.Stop();
 }
 
 /*
@@ -92,4 +95,15 @@ void DriveBackwardUntilPressed(int percent)
     /*
      *  INSERT CODE HERE
      */
+}
+
+void TokyoDrift(int percent)
+{
+    driveMotorLeft.SetPercent(percent);
+    driveMotorRight.SetPercent(-percent);
+
+    Sleep(5000);
+
+    driveMotorLeft.Stop();
+    driveMotorRight.Stop();
 }

@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  32652	   3424	   5568	  41644	   a2ac	../Robot_CodeOutline_v1.elf
